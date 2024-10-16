@@ -48,7 +48,7 @@ const theme = createTheme({
             },
             '&:hover': {
               '.MuiOutlinedInput-notchedOutline': {
-                borderColor: theme.palette.primary.main
+                borderColor: '#1976D2'
               }
             },
             '& fieldset': {
