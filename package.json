@@ -6,7 +6,7 @@
   "author": "TrungQuanDev - Một Lập Trình Viên",
   "description": "https://youtube.com/@trungquandev",
   "engines": {
-    "node": "18.16.0"
+    "node": "20.17.0"
   },
   "scripts": {
     "dev": "vite --host",
@@ -31,6 +31,7 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
-    "vite": "^4.3.2"
+    "vite": "^4.3.2",
+    "vite-plugin-svgr": "^3.2.0"
   }
 }
