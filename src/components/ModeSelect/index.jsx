@@ -11,13 +11,17 @@ function ModeSelect() {
     setMode(event.target.value)
   }
 
+  if (mode == null) {
+    setMode( localStorage.getItem('mui-mode') ?? 'light')
+  }
+
   return (
     <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
       <InputLabel id="label-select-dark-light-mode">Mode</InputLabel>
       <Select
         labelId="label-select-dark-light-mode"
         id="select-dark-light-mode"
-        value={mode}
+        value={mode || localStorage.getItem('mui-mode')}
         label="Mode"
         onChange={handleChange}
       >
