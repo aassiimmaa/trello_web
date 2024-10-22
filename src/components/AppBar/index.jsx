@@ -33,7 +33,6 @@ function AppBar() {
         <Recent />
         <Starred />
         <Templates />
-
         <Button startIcon={<LibraryAddIcon />} variant="outlined">Create</Button>
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
