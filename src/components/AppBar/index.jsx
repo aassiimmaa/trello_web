@@ -10,6 +10,7 @@ import Templates from './Menus/Templates'
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import Profile from './Menus/Profiles'
+import LibraryAddIcon from '@mui/icons-material/LibraryAdd'
 
 function AppBar() {
   return (
@@ -18,7 +19,9 @@ function AppBar() {
       height: (theme) => theme.trello.appBarHeight,
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'space-between'
+      justifyContent: 'space-between',
+      gap: 2,
+      overflowX: 'auto'
     }}>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
         <AppsIcon fontSize='small' sx={{ color: 'primary.main' }} />
@@ -31,7 +34,7 @@ function AppBar() {
         <Starred />
         <Templates />
 
-        <Button variant="outlined">Create</Button>
+        <Button startIcon={<LibraryAddIcon />} variant="outlined">Create</Button>
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
         <TextField id="outlined-search" label="Search" type="search" size='small'/>
