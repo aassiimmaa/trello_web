@@ -22,7 +22,7 @@ const theme = createTheme({
   components: {
     MuiCssBaseline: {
       styleOverrides: {
-        body: {
+        body:  {
           '*::-webkit-scrollbar': {
             width: '8px',
             height: '8px'
@@ -32,7 +32,7 @@ const theme = createTheme({
             borderRadius: '8px'
           },
           '*::-webkit-scrollbar-thumb:hover': {
-            backgroundColor: theme.palette.primary.main
+            backgroundColor: (theme) => theme.palette.primary.main
           }
         }
       }
@@ -65,7 +65,7 @@ const theme = createTheme({
             },
             '&:hover': {
               '.MuiOutlinedInput-notchedOutline': {
-                borderColor: theme.palette.primary.main
+                borderColor: '#1976D2'
               }
             },
             '& fieldset': {

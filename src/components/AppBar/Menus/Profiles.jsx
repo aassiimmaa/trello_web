@@ -22,7 +22,7 @@ function Profile() {
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
         >
-          <Avatar sx={{ width: 32, height: 32 }} src='https://scontent.fdad1-4.fna.fbcdn.net/v/t39.30808-6/404937972_3713252965613092_5530829882711376263_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFtdAY6SWO4E72B5wqiq8vqgbynoN7dsNOBvKeg3t2w06WJ6uuLV1Pb1eMkfhsUeNl7hrdk8KU2Do_IYohdvOJo&_nc_ohc=El8LZ_uv_AcQ7kNvgF2kw7O&_nc_zt=23&_nc_ht=scontent.fdad1-4.fna&_nc_gid=AjVIUGsAgscCJB-DJ4-BAmm&oh=00_AYDVtzOYNvjy6jaxvutjNGtcp-XiilaoScFKLgSB87M2gA&oe=671532AE' />
+          <Avatar sx={{ width: 34, height: 34 }} src='https://scontent.fdad1-4.fna.fbcdn.net/v/t39.30808-6/404937972_3713252965613092_5530829882711376263_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFtdAY6SWO4E72B5wqiq8vqgbynoN7dsNOBvKeg3t2w06WJ6uuLV1Pb1eMkfhsUeNl7hrdk8KU2Do_IYohdvOJo&_nc_ohc=El8LZ_uv_AcQ7kNvgF2kw7O&_nc_zt=23&_nc_ht=scontent.fdad1-4.fna&_nc_gid=AjVIUGsAgscCJB-DJ4-BAmm&oh=00_AYDVtzOYNvjy6jaxvutjNGtcp-XiilaoScFKLgSB87M2gA&oe=671532AE' />
         </IconButton>
       </Tooltip>
       <Menu
