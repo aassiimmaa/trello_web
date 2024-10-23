@@ -30,7 +30,8 @@ function BoardBar() {
       justifyContent: 'space-between',
       gap: 2,
       overflowX: 'auto',
-      borderTop: (theme) => `1px solid ${theme.palette.primary.main}`
+      borderTop: (theme) => `1px solid ${theme.palette.primary.main}`,
+      borderBottom: (theme) => `1px solid ${theme.palette.primary.main}`
     }}>
       <Box sx = {{ display: 'flex', alignItems: 'center', gap: 2 }}>
         <Chip
@@ -72,7 +73,11 @@ function BoardBar() {
             '& .MuiAvatar-root': {
               width: 32,
               height: 32,
-              fontSize: 16
+              fontSize: 16,
+              border: 'none',
+              color: 'white',
+              cursor: 'pointer',
+              '&:first-of-type': { bgcolor: '#a4b0be' }
             }
           }}
         >
