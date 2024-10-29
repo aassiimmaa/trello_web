@@ -49,72 +49,71 @@ function BoardContent({ board }) {
         : ACTIVE_DRAG_ITEM_TYPE.COLUMN
     )
     setActiveDragItemData(event?.active?.data?.current)
-    // }
-
-    // console.log(
-    //   'activeDragItemId:' + activeDragItemId
-    // )
-
-    // console.log('activeDragItemType: ' + activeDragItemType)
-
-    // console.log('activeDragItemData: ' + activeDragItemData)
-
-    const handleDragEnd = event => {
-      const { active, over } = event
-
-      if (!over) return
-
-      if (active.id !== over.id) {
-        const oldIndex = orderedColumns.findIndex(c => c._id === active.id)
-        const newIndex = orderedColumns.findIndex(c => c._id === over.id)
-        const dndOrderedColumns = arrayMove(orderedColumns, oldIndex, newIndex)
-
-        setOrderedCloumns(dndOrderedColumns)
-      }
-
-      setActiveDragItemId(null)
-      setActiveDragItemType(null)
-      setActiveDragItemData(null)
-    }
-
-    const dropAnimation = {
-      sideEffect: defaultDropAnimationSideEffects({
-        styles: {
-          active: {
-            opacity: '0.5'
-          }
-        }
-      })
-    }
-
-    return (
-      <DndContext
-        onDragStart={handleDragStart}
-        onDragEnd={handleDragEnd}
-        sensors={sensors}
-      >
-        <Box
-          sx={{
-            width: '100%',
-            height: theme => theme.trello.boardContentHeight,
-            color: 'white',
-            p: '8px 0'
-          }}
-        >
-          <ListColumns columns={orderedColumns} />
-          <DragOverlay dropAnimation={dropAnimation}>
-            {!activeDragItemType && null}
-            {activeDragItemType === ACTIVE_DRAG_ITEM_TYPE.COLUMN && (
-              <Column column={activeDragItemData} />
-            )}
-            {activeDragItemType === ACTIVE_DRAG_ITEM_TYPE.CARD && (
-              <Card card={activeDragItemData} />
-            )}
-          </DragOverlay>
-        </Box>
-      </DndContext>
-    )
   }
+
+  // console.log(
+  //   'activeDragItemId:' + activeDragItemId
+  // )
+
+  // console.log('activeDragItemType: ' + activeDragItemType)
+
+  // console.log('activeDragItemData: ' + activeDragItemData)
+
+  const handleDragEnd = event => {
+    const { active, over } = event
+
+    if (!over) return
+
+    if (active.id !== over.id) {
+      const oldIndex = orderedColumns.findIndex(c => c._id === active.id)
+      const newIndex = orderedColumns.findIndex(c => c._id === over.id)
+      const dndOrderedColumns = arrayMove(orderedColumns, oldIndex, newIndex)
+
+      setOrderedCloumns(dndOrderedColumns)
+    }
+
+    setActiveDragItemId(null)
+    setActiveDragItemType(null)
+    setActiveDragItemData(null)
+  }
+
+  const dropAnimation = {
+    sideEffect: defaultDropAnimationSideEffects({
+      styles: {
+        active: {
+          opacity: '0.5'
+        }
+      }
+    })
+  }
+
+  return (
+    <DndContext
+      onDragStart={handleDragStart}
+      onDragEnd={handleDragEnd}
+      sensors={sensors}
+    >
+      <Box
+        sx={{
+          width: '100%',
+          height: theme => theme.trello.boardContentHeight,
+          color: 'white',
+          p: '8px 0'
+        }}
+      >
+        <ListColumns columns={orderedColumns} />
+        <DragOverlay dropAnimation={{ duration: 250, easing: 'ease' }}>
+          {!activeDragItemType && null}
+          {activeDragItemType === ACTIVE_DRAG_ITEM_TYPE.COLUMN && (
+            <Column column={activeDragItemData} />
+          )}
+          {activeDragItemType === ACTIVE_DRAG_ITEM_TYPE.CARD && (
+            <Card card={activeDragItemData} />
+          )}
+        </DragOverlay>
+      </Box>
+    </DndContext>
+  )
 }
 
 export default BoardContent
