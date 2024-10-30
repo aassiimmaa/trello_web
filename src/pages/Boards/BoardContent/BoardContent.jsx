@@ -34,7 +34,7 @@ function BoardContent({ board }) {
 
   const [orderedColumns, setOrderedCloumns] = useState([])
 
-  const [activeDragItemId, setActiveDragItemId] = useState(null)
+  // const [activeDragItemId, setActiveDragItemId] = useState(null)
   const [activeDragItemType, setActiveDragItemType] = useState(null)
   const [activeDragItemData, setActiveDragItemData] = useState(null)
 
@@ -49,7 +49,7 @@ function BoardContent({ board }) {
   }
 
   const handleDragStart = event => {
-    setActiveDragItemId(event?.active?.id)
+    // setActiveDragItemId(event?.active?.id)
     setActiveDragItemType(
       event?.active?.data?.current?.columnId
         ? ACTIVE_DRAG_ITEM_TYPE.CARD
@@ -166,7 +166,7 @@ function BoardContent({ board }) {
       setOrderedCloumns(dndOrderedColumns)
     }
 
-    setActiveDragItemId(null)
+    // setActiveDragItemId(null)
     setActiveDragItemType(null)
     setActiveDragItemData(null)
   }
@@ -197,7 +197,7 @@ function BoardContent({ board }) {
         }}
       >
         <ListColumns columns={orderedColumns} />
-        <DragOverlay dropAnimation={{ duration: 250, easing: 'ease' }}>
+        <DragOverlay dropAnimation={dropAnimation}>
           {!activeDragItemType && null}
           {activeDragItemType === ACTIVE_DRAG_ITEM_TYPE.COLUMN && (
             <Column column={activeDragItemData} />
