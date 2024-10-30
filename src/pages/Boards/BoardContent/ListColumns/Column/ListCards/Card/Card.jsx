@@ -25,6 +25,7 @@ function Card({ card }) {
     transform: CSS.Translate.toString(transform),
     transition,
     opacity: isDragging ? 0.5 : 1,
+    border: isDragging ? '1px solid #000' : undefined,
     cursor: 'grab'
   }
 
