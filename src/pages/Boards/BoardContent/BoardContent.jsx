@@ -2,6 +2,7 @@ import { Box } from '@mui/material'
 import ListColumns from './ListColumns/ListColumns'
 import { mapOrder } from '~/utils/sorts'
 import {
+  closestCorners,
   defaultDropAnimationSideEffects,
   DndContext,
   DragOverlay,
@@ -48,6 +49,7 @@ function BoardContent({ board }) {
     )
   }
 
+  //Trigger khi bắt đầu kéo một phần tử (Dragging)
   const handleDragStart = event => {
     // setActiveDragItemId(event?.active?.id)
     setActiveDragItemType(
@@ -128,19 +130,31 @@ function BoardContent({ board }) {
         //nextActiveColumn: Column cũ
         if (nextActiveColumn) {
           //Xóa card ở column active (cũng có thể hiểu là column cũ, lúc kéo card ra khỏi nó để sang column khác)
-          nextActiveColumn.cards = nextActiveColumn.cards.filter(card => card._id !== activeDraggingCardId)
+          nextActiveColumn.cards = nextActiveColumn.cards.filter(
+            card => card._id !== activeDraggingCardId
+          )
           //Cập nhật lại mảng cardOrderIds cho chuẩn dữ liệu
-          nextActiveColumn.cardOrderIds = nextActiveColumn.cards.map(card => card._id)
+          nextActiveColumn.cardOrderIds = nextActiveColumn.cards.map(
+            card => card._id
+          )
         }
 
         //nextOverColumn: Column mới
         if (nextOverColumn) {
           //Kiểm tra xem card đang kéo nó có tồn tại ở overColumn chưa, nếu có thì cần xóa nó trước
-          nextOverColumn.cards = nextOverColumn.cards.filter(card => card._id !== activeDraggingCardId)
+          nextOverColumn.cards = nextOverColumn.cards.filter(
+            card => card._id !== activeDraggingCardId
+          )
           //Tiếp theo là thêm cái card dạng kéo vào overColumn theo vị trí index mới
-          nextOverColumn.cards = nextOverColumn.cards.toSpliced(newCardIndex, 0, activeDraggingCardData)
+          nextOverColumn.cards = nextOverColumn.cards.toSpliced(
+            newCardIndex,
+            0,
+            activeDraggingCardData
+          )
           //Cập nhật lại mạng cardOrderIds cho chuẩn dữ liệu
-          nextOverColumn.cardOrderIds = nextOverColumn.cards.map(card => card._id)
+          nextOverColumn.cardOrderIds = nextOverColumn.cards.map(
+            card => card._id
+          )
         }
 
         return nextColumns
@@ -148,6 +162,7 @@ function BoardContent({ board }) {
     }
   }
 
+  //Trigger khi kết thúc việc kéo một phần tử (Dropping)
   const handleDragEnd = event => {
     const { active, over } = event
 
@@ -183,10 +198,13 @@ function BoardContent({ board }) {
 
   return (
     <DndContext
+      //Cảm biến
+      sensors={sensors}
+      //Thuật toán phát hiện va chạm (nếu không có nó thì card với cover lớn sẽ không kéo qua Column được vì lúc này nó đang bị conflict giữa card và column), chúng ta sẽ dùng closestCorners thay vì colosestCenter
+      collisionDetection={closestCorners}
       onDragStart={handleDragStart}
       onDragOver={handleDragOver}
       onDragEnd={handleDragEnd}
-      sensors={sensors}
     >
       <Box
         sx={{
