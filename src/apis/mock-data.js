@@ -10,7 +10,7 @@ export const mockData = {
     type: 'public', // 'private'
     ownerIds: [], // Những users là Admin của board
     memberIds: [], // Những users là member bình thường của board
-    columnOrderIds: ['column-id-01', 'column-id-02', 'column-id-03'], // Thứ tự sắp xếp / vị trí của các Columns trong 1 boards
+    columnOrderIds: ['column-id-01', 'column-id-02', 'column-id-03', 'column-id-04'], // Thứ tự sắp xếp / vị trí của các Columns trong 1 boards
     columns: [
       {
         _id: 'column-id-01',
@@ -33,7 +33,7 @@ export const mockData = {
             title: 'Title of card 01',
             description: 'Markdown Syntax (sẽ ở khóa nâng cao nhé)',
             cover:
-              'https://scontent.fdad2-1.fna.fbcdn.net/v/t39.30808-6/349314272_792023842246959_4240143555096362812_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeGyTjL2FNdHOuH0TOP3a0frs0t9FpW-2WCzS30Wlb7ZYP6vN4YLS0liMXyVzLxc8_Mc8_wvfDykSi2adf1kev2M&_nc_ohc=F-Jh0Ft4lGUQ7kNvgFhthqs&_nc_zt=23&_nc_ht=scontent.fdad2-1.fna&_nc_gid=AYjHi1pXxT6AjlGQkoPuY3q&oh=00_AYBfG6Fu0V-q_ainJIavIjltV-T0GBRUHsaFECQtDEGJkA&oe=671E45C3',
+              'https://scontent.fdad1-3.fna.fbcdn.net/v/t39.30808-6/318499250_3456453231293068_9071339959001693835_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeFgiaY8z2_xfsNjZFJBaCmwFGxCsCF-eHEUbEKwIX54cSlE3UvsKArhmouC09EXSErRh6HT0TvMU24VaCmFv03A&_nc_ohc=el_0rWjnkqwQ7kNvgGlLGnf&_nc_zt=23&_nc_ht=scontent.fdad1-3.fna&_nc_gid=AU9VySsMEoChwK6KSVPSXFM&oh=00_AYDFF4eOtYv1V8n5gGm68fbQMGMheIE1V91IFL8ePVALAA&oe=6730D149',
             memberIds: ['test-user-id-01'],
             comments: ['test comment 01', 'test comment 02'],
             attachments: [
@@ -189,6 +189,20 @@ export const mockData = {
             memberIds: [],
             comments: [],
             attachments: []
+          }
+        ]
+      },
+      {
+        _id: 'column-id-04',
+        boardId: 'board-id-01',
+        title: 'Empty Column 04',
+        cardOrderIds: ['column-id-04-placeholder-card'],
+        cards: [
+          {
+            _id: 'column-id-04-placeholder-card',
+            boardId: 'board-id-01',
+            columnId: 'column-id-04',
+            FE_PlaceholderCard: true
           }
         ]
       }
