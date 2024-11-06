@@ -2,7 +2,6 @@ import { Box } from '@mui/material'
 import ListColumns from './ListColumns/ListColumns'
 import { mapOrder } from '~/utils/sorts'
 import {
-  closestCenter,
   closestCorners,
   defaultDropAnimationSideEffects,
   DndContext,
@@ -10,7 +9,6 @@ import {
   getFirstCollision,
   MouseSensor,
   pointerWithin,
-  rectIntersection,
   TouchSensor,
   useSensor,
   useSensors
@@ -302,19 +300,26 @@ function BoardContent({ board }) {
       }
 
       const pointerIntersections = pointerWithin(args)
-      const intersections =
-        pointerIntersections?.length > 0
-          ? pointerIntersections
-          : rectIntersection(args)
-      let overId = getFirstCollision(intersections, 'id')
+
+      if (!pointerIntersections?.length) return
+
+      // const intersections =
+      //   pointerIntersections?.length > 0
+      //     ? pointerIntersections
+      //     : rectIntersection(args)
+
+      let overId = getFirstCollision(pointerIntersections, 'id')
 
       if (overId) {
         const checkColumn = orderedColumns.find(column => column._id === overId)
         if (checkColumn) {
-          overId = closestCenter({
+          overId = closestCorners({
             ...args,
             droppableContainers: args.droppableContainers.filter(container => {
-              return container.id !== overId && checkColumn?.cardOrderIds?.includes(container.id)
+              return (
+                container.id !== overId &&
+                checkColumn?.cardOrderIds?.includes(container.id)
+              )
             })
           })[0]?.id
         }
@@ -323,9 +328,9 @@ function BoardContent({ board }) {
         return [{ id: overId }]
       }
 
-      return lastOverId.current ? [{ id: lastOverId.current}] : []
+      return lastOverId.current ? [{ id: lastOverId.current }] : []
     },
-    [activeDragItemType]
+    [activeDragItemType, orderedColumns]
   )
 
   return (
