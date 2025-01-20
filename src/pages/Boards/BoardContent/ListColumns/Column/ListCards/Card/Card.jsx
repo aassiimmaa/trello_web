@@ -14,11 +14,21 @@ import { CSS } from '@dnd-kit/utilities'
 
 function Card({ card }) {
   const shouldShowCardAction = () => {
-    return !!card?.memberIds?.length || !!card?.comments?.length || !!card?.attachments?.length
+    return (
+      !!card?.memberIds?.length ||
+      !!card?.comments?.length ||
+      !!card?.attachments?.length
+    )
   }
 
-  const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
-    useSortable({ id: card._id, data:  { ...card } })
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging
+  } = useSortable({ id: card._id, data: { ...card } })
 
   const dndKitCardStyles = {
     touchAction: 'none',
@@ -39,14 +49,16 @@ function Card({ card }) {
         cursor: 'pointer',
         boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
         overflow: 'unset',
-        display: card?.FE_PlaceholderCard ? 'none' : 'block'
+        display: card?.FE_PlaceholderCard ? 'none' : 'block',
+        border: '2px solid transparent',
+        '&:hover': { borderColor: theme => theme.palette.success.dark }
       }}
     >
       {card?.cover && <CardMedia sx={{ height: 140 }} image={card?.cover} />}
       <CardContent sx={{ p: 1.5 }}>
         <Typography>{card?.title}</Typography>
       </CardContent>
-      {shouldShowCardAction() &&
+      {shouldShowCardAction() && (
         <CardActions
           sx={{
             p: '0 4px 8px 4px'
@@ -68,7 +80,7 @@ function Card({ card }) {
             </Button>
           )}
         </CardActions>
-      }
+      )}
     </MuiCard>
   )
 }
