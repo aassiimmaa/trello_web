@@ -7,12 +7,13 @@ import {
   DndContext,
   DragOverlay,
   getFirstCollision,
-  MouseSensor,
+  // MouseSensor,
   pointerWithin,
-  TouchSensor,
+  // TouchSensor,
   useSensor,
   useSensors
 } from '@dnd-kit/core'
+import { MouseSensor, TouchSensor } from '~/customLibraries/dndkitSensors'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { arrayMove } from '@dnd-kit/sortable'
 import Column from './ListColumns/Column/Column'
@@ -117,7 +118,9 @@ function BoardContent({ board }) {
         )
 
         //Xóa placeholder card nếu nó đang tồn tại
-        nextOverColumn.cards = nextOverColumn.cards.filter(card => !card.FE_PlaceholderCard)
+        nextOverColumn.cards = nextOverColumn.cards.filter(
+          card => !card.FE_PlaceholderCard
+        )
 
         //Phải cập nhật lại chuẩn dữ liệu columnId trong card sau khi kéo card giữa 2 column khác nhau.
         const rebuild_activeDraggingCardData = {
