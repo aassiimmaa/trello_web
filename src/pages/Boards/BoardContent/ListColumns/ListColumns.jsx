@@ -7,6 +7,7 @@ import {
 } from '@dnd-kit/sortable'
 import { useState } from 'react'
 import ClearIcon from '@mui/icons-material/Clear'
+import { toast } from 'react-toastify'
 
 function ListColumns({ columns }) {
   const [openNewColumnForm, setOpenNewColumnForm] = useState(false)
@@ -16,10 +17,9 @@ function ListColumns({ columns }) {
 
   const addNewColumn = () => {
     if (!newColumnTitle) {
-      // console.error('Please enter column title')
+      toast.error('Please enter Column Title!')
       return
     }
-    // console.log(newColumnTitle)
 
     toggleOpenNewColumnForm()
     setNewColumnTitle('')

@@ -26,6 +26,7 @@ import ClearIcon from '@mui/icons-material/Clear'
 import { mapOrder } from '~/utils/sorts'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
+import { toast } from 'react-toastify'
 
 function Column({ column }) {
   const {
@@ -63,7 +64,9 @@ function Column({ column }) {
 
   const addNewCard = () => {
     if (!newCardTitle) {
-      // console.error('Please enter Card title')
+      toast.error('Please enter Card Title!', {
+        position: 'bottom-right'
+      })
       return
     }
     // console.log(newCardTitle)
