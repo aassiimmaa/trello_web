@@ -26,7 +26,7 @@ const ACTIVE_DRAG_ITEM_TYPE = {
   CARD: 'ACTIVE_DRAG_ITEM_TYPE_CARD'
 }
 
-function BoardContent({ board, createNewColumn, createNewCard }) {
+function BoardContent({ board, createNewColumn, createNewCard, moveColumns }) {
   //fix click column call event
   const mouseSensor = useSensor(MouseSensor, {
     activationConstraint: { distance: 10 }
@@ -283,9 +283,11 @@ function BoardContent({ board, createNewColumn, createNewCard }) {
           oldColumnIndex,
           newColumnIndex
         )
-
         //Cập nhật lại state columns ban đầu sau khi kéo thả
         setOrderedColumns(dndOrderedColumns)
+v 
+        moveColumns(dndOrderedColumns)
+
       }
     }
 
