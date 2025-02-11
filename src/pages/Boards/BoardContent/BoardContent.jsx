@@ -1,6 +1,5 @@
 import { Box } from '@mui/material'
 import ListColumns from './ListColumns/ListColumns'
-import { mapOrder } from '~/utils/sorts'
 import {
   closestCorners,
   defaultDropAnimationSideEffects,
@@ -26,7 +25,13 @@ const ACTIVE_DRAG_ITEM_TYPE = {
   CARD: 'ACTIVE_DRAG_ITEM_TYPE_CARD'
 }
 
-function BoardContent({ board, createNewColumn, createNewCard, moveColumns }) {
+function BoardContent({
+  board,
+  createNewColumn,
+  createNewCard,
+  moveColumns,
+  moveCardInTheSameColumn
+}) {
   //fix click column call event
   const mouseSensor = useSensor(MouseSensor, {
     activationConstraint: { distance: 10 }
@@ -47,7 +52,7 @@ function BoardContent({ board, createNewColumn, createNewCard, moveColumns }) {
   const lastOverId = useRef(null)
 
   useEffect(() => {
-    setOrderedColumns(mapOrder(board?.columns, board?.columnOrderIds, '_id'))
+    setOrderedColumns(board.columns)
   }, [board])
 
   const findColumnByCardId = cardId => {
@@ -252,6 +257,9 @@ function BoardContent({ board, createNewColumn, createNewCard, moveColumns }) {
           oldCardIndex,
           newCardIndex
         )
+
+        const dndOrderCardIds = dndOrderedCards.map(card => card._id)
+
         setOrderedColumns(prevColumns => {
           //Clone mảng OrderedColumnsState cũ ra một cái mới để xử lý dât rồi return - cập nhật lại OrderedColumnsState mới
           const nextColumns = cloneDeep(prevColumns)
@@ -259,11 +267,17 @@ function BoardContent({ board, createNewColumn, createNewCard, moveColumns }) {
 
           //Cập nhật lại 2 giá trị card và cardOrderIds trong targetColumn
           targetColumn.cards = dndOrderedCards
-          targetColumn.cardOrderIds = dndOrderedCards.map(card => card._id)
+          targetColumn.cardOrderIds = dndOrderCardIds
 
           //Trả về giá trị state mới chuẩn vị trí
           return nextColumns
         })
+
+        moveCardInTheSameColumn(
+          dndOrderedCards,
+          dndOrderCardIds,
+          oldColumnWhenDraggingCard._id
+        )
       }
     }
 
@@ -285,9 +299,7 @@ function BoardContent({ board, createNewColumn, createNewCard, moveColumns }) {
         )
         //Cập nhật lại state columns ban đầu sau khi kéo thả
         setOrderedColumns(dndOrderedColumns)
-v 
         moveColumns(dndOrderedColumns)
-
       }
     }
 
@@ -367,7 +379,11 @@ v
           p: '8px 0'
         }}
       >
-        <ListColumns columns={orderedColumns} createNewColumn={createNewColumn} createNewCard={createNewCard} />
+        <ListColumns
+          columns={orderedColumns}
+          createNewColumn={createNewColumn}
+          createNewCard={createNewCard}
+        />
         <DragOverlay dropAnimation={dropAnimation}>
           {!activeDragItemType && null}
           {activeDragItemType === ACTIVE_DRAG_ITEM_TYPE.COLUMN && (
