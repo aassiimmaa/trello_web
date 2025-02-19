@@ -2693,6 +2693,11 @@ magic-string@^0.30.11:
   dependencies:
     "@jridgewell/sourcemap-codec" "^1.5.0"
 
+material-ui-confirm@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/material-ui-confirm/-/material-ui-confirm-4.0.0.tgz#06e2cb71164f43762ded5b39656eeb342a0edf82"
+  integrity sha512-Wtt7XWythYtawPTfq8V/eYGvJ7jqwCQGmEnmpevJicaJ3PUoDcLh/b/m7aV6yNdrWwjQjB2r/RvTWQAC6y0tKw==
+
 mime-db@1.52.0:
   version "1.52.0"
   resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.52.0.tgz#bbabcdc02859f4987301c856e3387ce5ec43bf70"
