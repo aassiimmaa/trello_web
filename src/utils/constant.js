@@ -4,6 +4,7 @@ if (process.env.BUILD_MODE === 'dev') {
 } else if (process.env.BUILD_MODE === 'production') {
   apiRoot = 'https://trello-api-yuuf.onrender.com'
 }
+//jztr
 
 export const API_ROOT = apiRoot
 // export const API_ROOT = 'http://localhost:8017'
